@@ -1,14 +1,5 @@
 """get-rabbit-messages: Gets messages from RabbitMQ and stores them in RavenDB."""
 
-__author__ = "Greg Major"
-__copyright__ = "Copyright 2015, Lead Pipe Software"
-__credits__ = ["Greg Major"]
-__license__ = "GPL"
-__version__ = "0.1"
-__maintainer__ = "Greg Major"
-__email__ = "greg.b.major@gmail.com"
-__status__ = "Development"
-
 import sys
 import argparse
 import json
