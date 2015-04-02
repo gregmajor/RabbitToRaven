@@ -1,4 +1,5 @@
 from setuptools import setup
+import py2exe
 
 setup (
     name = "RabbitToRaven",
@@ -7,7 +8,8 @@ setup (
     author="Greg Major",
     author_email="", # Removed to limit spam harvesting.
     url="http://www.gregmajor.com/",
-    packages = find_packages(exclude="test"),
+    #packages = find_packages(exclude="test"), # py2exe found this hateful
+    packages=['RabbitToRaven'],
     entry_points = {
         'console_scripts': ['RabbitToRaven = RabbitToRaven.__main__:main']
                     },
