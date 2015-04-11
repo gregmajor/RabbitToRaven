@@ -1,4 +1,4 @@
-"""get-rabbit-messages: Gets messages from RabbitMQ and stores them in RavenDB."""
+""" RabbitToRaven: Gets messages from RabbitMQ and stores them in RavenDB. """
 
 import sys
 import argparse
@@ -12,7 +12,7 @@ import pprint
 # rabbit/rabbit is 'Basic cmFiYml0OnJhYmJpdA=='
 
 def main(args=None):
-    """The program entry point."""
+    """ The program entry point. """
 
     parser = argparse.ArgumentParser(description='Gets messages from RabbitMQ and stores them in RavenDB.')
 
@@ -22,7 +22,8 @@ def main(args=None):
     parser.add_argument('-r', '--rabbit_host_url', default='http://localhost', help='the RabbitMQ host URL')
     parser.add_argument('-p', '--rabbit_port', type=int, default=15672, help='the RabbitMQ port')
     parser.add_argument('-s', '--rabbit_vhost', default='%2F', help='the RabbitMQ vhost name')
-    parser.add_argument('-z', '--rabbit_authorization_string', default='Basic Z3Vlc3Q6Z3Vlc3Q=', help='the authorization string for the RabbitMQ request header')
+    parser.add_argument('-z', '--rabbit_authorization_string', default='Basic Z3Vlc3Q6Z3Vlc3Q=',
+                        help='the authorization string for the RabbitMQ request header')
     parser.add_argument('-u', '--raven_host_url', default='http://localhost', help='the RavenDB host URL')
     parser.add_argument('-t', '--raven_port', type=int, default=8080, help='the RavenDB port')
     parser.add_argument('-e', '--raven_entity', default='CopiedMessages', help='the name of the RavenDB entities')
@@ -40,8 +41,9 @@ def main(args=None):
     print('Fetched: ' + str(len(messages)))
     print(' Stored: ' + str(stored_message_count))
 
+
 def build_rabbit_url(rabbit_host_url, rabbit_port, rabbit_vhost, rabbit_queue, verbose=False):
-    """Builds the RabbitMQ URL.
+    """ Builds the RabbitMQ URL.
 
     Args:
       rabbit_host_url (str): The RabbitMQ host URL.
@@ -61,8 +63,9 @@ def build_rabbit_url(rabbit_host_url, rabbit_port, rabbit_vhost, rabbit_queue, v
 
     return url
 
+
 def build_raven_url(raven_host_url, raven_port, verbose=False):
-    """Builds the RavenDB URL.
+    """ Builds the RavenDB URL.
 
     Args:
       raven_host_url (str): The RavenDB host URL.
@@ -80,8 +83,9 @@ def build_raven_url(raven_host_url, raven_port, verbose=False):
 
     return url
 
+
 def get_rabbit_messages(message_count, requeue, rabbit_host_url, rabbit_port, rabbit_vhost, rabbit_queue, rabbit_authorization_string):
-    """Gets messages from RabbitMQ.
+    """ Gets messages from RabbitMQ.
 
     Args:
       message_count (int): The number of messages to fetch from the queue.
@@ -109,8 +113,9 @@ def get_rabbit_messages(message_count, requeue, rabbit_host_url, rabbit_port, ra
 
     return rabbit_response.json()
 
+
 def store_messages_in_raven(messages, raven_entity, raven_host_url, raven_port, verbose=False):
-    """Stores messages in RavenDB.
+    """ Stores messages in RavenDB.
 
     Args:
       messages (list): The messages to store in RavenDB.
@@ -144,6 +149,7 @@ def store_messages_in_raven(messages, raven_entity, raven_host_url, raven_port, 
             pprint.pprint(raven_response.text)
 
     return count
+
 
 if __name__ == "__main__":
     main()
